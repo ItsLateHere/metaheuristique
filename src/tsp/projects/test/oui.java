@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class oui extends CompetitorProject {
     private Path path;
-    private double test;
+    private double currentLength;
     private FileWriter fw;
     private static final Random rand = new Random();
     private int nbA = 0;
@@ -34,7 +34,7 @@ public class oui extends CompetitorProject {
 
         path = new Path(this.problem.getLength());
         Evaluation e = new Evaluation(this.problem);
-        test = e.quickEvaluate(this.path);
+        currentLength = e.quickEvaluate(this.path);
         double eval, var;
         var=0;
         for(int i=0; i<100; i++)
@@ -54,12 +54,12 @@ public class oui extends CompetitorProject {
             int aux = oui[a];
             oui[a] = oui[b];
             oui[b] = aux;
-            eval = test - A_m1.distance(A) - A.distance(A_p1) - B_m1.distance(B) - B.distance(B_p1)
+            eval = currentLength - A_m1.distance(A) - A.distance(A_p1) - B_m1.distance(B) - B.distance(B_p1)
                     + A_m1.distance(B) + B.distance(A_p1) + B_m1.distance(A) + A.distance(B_p1);
-            var+=Math.abs(test-eval);
+            var+=currentLength -eval;
         }
 
-        T=-((var/100)/(Math.log(0.3)));
+        T=-((Math.abs(var)/100)/(Math.log(0.3)));
         try {
             File out = new File(nomFichier);
             out.createNewFile();
@@ -71,9 +71,8 @@ public class oui extends CompetitorProject {
 
     public boolean SimulatedAnnealing(double delta) {
         if (nbA % 12 == 0 || nbR % 100 == 0) {
-            T*=0.9999;
+            T*=0.99999;
         }
-        delta= Math.abs(delta);
         double p = Math.min(1, Math.exp(-delta / T));
         if (p > rand.nextDouble())
             return true;
@@ -99,14 +98,14 @@ public class oui extends CompetitorProject {
             oui[a] = oui[b];
             oui[b] = aux;
             Path np = new Path(oui);
-            double eval = test - A_m1.distance(A) - A.distance(A_p1) - B_m1.distance(B) - B.distance(B_p1)
+            double newPathLength = currentLength - A_m1.distance(A) - A.distance(A_p1) - B_m1.distance(B) - B.distance(B_p1)
                     + A_m1.distance(B) + B.distance(A_p1) + B_m1.distance(A) + A.distance(B_p1);
 
 
-            if (eval < test || SimulatedAnnealing(eval - test)) {
+            if (newPathLength < currentLength || SimulatedAnnealing(newPathLength - currentLength)) {
                 this.evaluation.evaluate(np);
                 nbA++;
-                test = eval;
+                currentLength = newPathLength;
                 path=np;
                 break;
             } else {

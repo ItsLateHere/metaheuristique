@@ -1,27 +1,8 @@
 Évaluation des projets
 1 exécution
-60 secondes
+10 secondes
 2 projets
 4 problèmes
 
-tsp.projects.test.RandomSearch
-E:\Program Files (x86)\OneDrive\Bureau\mh_project\data\bier127     	512378.39385090896
-E:\Program Files (x86)\OneDrive\Bureau\mh_project\data\fnl4461     	8049844.586917797
-E:\Program Files (x86)\OneDrive\Bureau\mh_project\data\gr666       	52581.173036364366
-E:\Program Files (x86)\OneDrive\Bureau\mh_project\data\surprise1350	863415.8967192782
-
-tsp.projects.test.oui
-E:\Program Files (x86)\OneDrive\Bureau\mh_project\data\bier127     	512743.6092189569
-E:\Program Files (x86)\OneDrive\Bureau\mh_project\data\fnl4461     	8103587.198554921
-E:\Program Files (x86)\OneDrive\Bureau\mh_project\data\gr666       	53055.58015787382
-E:\Program Files (x86)\OneDrive\Bureau\mh_project\data\surprise1350	863954.2832622273
-
-Projet Exemple
-Alexandre Blansché
-Évaluation: 0.0
-
-Projet Recuit simulé
-Nicolas Demarquez
-Simon Bartolacci
-Évaluation: 0.4258736117691294
-
+tsp.projects.test.Genetic
+E:\Program Files (x86)\OneDrive\Bureau\mh_project\metaheuristique\data\bier127     
