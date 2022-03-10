@@ -2,6 +2,7 @@ package tsp.projects.exemple;
 
 import tsp.evaluation.Evaluation;
 import tsp.evaluation.Path;
+import tsp.projects.CompetitorProject;
 import tsp.projects.InvalidProjectException;
 import tsp.projects.DemoProject;
 
@@ -9,7 +10,7 @@ import tsp.projects.DemoProject;
  * @author Alexandre Blansché
  * Recherche aléatoire
  */
-public class RandomSearch extends DemoProject
+public class RandomSearch extends CompetitorProject
 {
 	private int length;
 	

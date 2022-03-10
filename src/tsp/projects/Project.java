@@ -105,6 +105,7 @@ public abstract class Project implements Runnable
 			}
 			catch (Exception e)
 			{
+				e.printStackTrace();
 			}
 	}
 }

@@ -5,6 +5,7 @@ import tsp.evaluation.Evaluation;
 import tsp.evaluation.Path;
 import tsp.evaluation.Solution;
 import tsp.projects.CompetitorProject;
+import tsp.projects.DemoProject;
 import tsp.projects.InvalidProjectException;
 
 import java.io.File;
@@ -12,10 +13,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 
-public class oui extends CompetitorProject {
+public class oui extends DemoProject {
     private Path path;
     private double currentLength;
-    private FileWriter fw;
     private static final Random rand = new Random();
     private int nbA = 0;
     private int nbR = 0;
@@ -30,8 +30,6 @@ public class oui extends CompetitorProject {
 
     @Override
     public void initialization() {
-        String nomFichier = this.problem.getName().replace("\\data","").concat(".txt");
-
         path = new Path(this.problem.getLength());
         Evaluation e = new Evaluation(this.problem);
         currentLength = e.quickEvaluate(this.path);
@@ -58,15 +56,7 @@ public class oui extends CompetitorProject {
                     + A_m1.distance(B) + B.distance(A_p1) + B_m1.distance(A) + A.distance(B_p1);
             var+=currentLength -eval;
         }
-
         T=-((Math.abs(var)/100)/(Math.log(0.3)));
-        try {
-            File out = new File(nomFichier);
-            out.createNewFile();
-            fw= new FileWriter(nomFichier);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
     }
 
     public boolean SimulatedAnnealing(double delta) {
@@ -118,13 +108,5 @@ public class oui extends CompetitorProject {
     public void loop() {
         int a = rand.nextInt(this.problem.getLength());
         SwapAndEvaluate(a);
-        try {
-            fw.write(Double.toString(T));
-            fw.append('\n');
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
     }
 }

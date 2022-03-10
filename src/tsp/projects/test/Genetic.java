@@ -3,11 +3,12 @@ package tsp.projects.test;
 import tsp.evaluation.Evaluation;
 import tsp.evaluation.Path;
 import tsp.projects.CompetitorProject;
+import tsp.projects.DemoProject;
 import tsp.projects.InvalidProjectException;
 
 import java.util.Random;
 
-public class Genetic extends CompetitorProject {
+public class Genetic extends DemoProject {
     public static final int POP = 10;
     Random random=new Random();
 
@@ -15,7 +16,6 @@ public class Genetic extends CompetitorProject {
     Path best=gen1[0];
     double bestEval=0,avg=0;
     double[] tab2= new double[POP];
-    double[][] villes=this.problem.getData();
     public Genetic(Evaluation evaluation) throws InvalidProjectException {
         super(evaluation);
         this.addAuthor("Nicolas Demarquez");
@@ -59,12 +59,11 @@ public class Genetic extends CompetitorProject {
                 } 
                 else {
                     child2[j] = p1.getPath()[j];
-                    taken[p2.getPath()[j]] = false;
+                    taken[p1.getPath()[j]] = false;
                 }
             }
             
-            int cursor1=0;
-            int cursor2=0;
+            int cursor1=0,cursor2=0,cursor3=0,cursor4=0;
             for (int j=0; j<longueur; j++)
             {
                 if(!taken[j])
@@ -73,21 +72,34 @@ public class Genetic extends CompetitorProject {
                     {
                         cursor1++;
                     }
-                    child1[j]=p2.getPath()[cursor1++];
-                }
-                else
-                {
-                    while (!taken[p1.getPath()[cursor2]])
+                    while (taken[child1[cursor2]])
                     {
                         cursor2++;
                     }
-                    child2[j]=p1.getPath()[cursor2++];
+                    child1[cursor2]=p2.getPath()[cursor1];
+                    cursor1++;
+                    cursor2++;
+                }
+                else
+                {
+                    while (taken[p2.getPath()[cursor3]])
+                    {
+                        cursor3++;
+                    }
+                    while (taken[child1[cursor4]])
+                    {
+                        cursor4++;
+                    }
+                    child2[cursor4]=p2.getPath()[cursor3];
+                    cursor3++;
+                    cursor4++;
                 }
             }
             gen2[i]= new Path(child1);
             gen2[i+1]=new Path(child2);
-            
         }
+
+
         Path[] newgen= new Path[POP];
         int alea = random.nextInt(POP);
         double eval=this.evaluation.quickEvaluate(gen1[alea]);
@@ -114,16 +126,13 @@ public class Genetic extends CompetitorProject {
             if(random.nextBoolean())
             {
                 newgen[j]=gen1[j];
-                j++;
             }
             else
             {
                 newgen[j]=gen2[j];
-                j++;
             }
-
+            j++;
         }
-
         gen1=newgen;
         bestEval=0;
         for(int k=0; k<this.problem.getLength(); k++)
@@ -134,7 +143,6 @@ public class Genetic extends CompetitorProject {
                 bestEval=this.evaluation.quickEvaluate(gen1[k]);
             }
         }
-
         this.evaluation.evaluate(best);
     }
 }

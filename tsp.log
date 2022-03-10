@@ -1,8 +1,14 @@
 Évaluation des projets
 1 exécution
-10 secondes
+60 secondes
 2 projets
 4 problèmes
 
-tsp.projects.test.Genetic
+tsp.projects.exemple.RandomSearch
+E:\Program Files (x86)\OneDrive\Bureau\mh_project\metaheuristique\data\bier127     	511969.6991000625
+E:\Program Files (x86)\OneDrive\Bureau\mh_project\metaheuristique\data\fnl4461     	8079361.688898321
+E:\Program Files (x86)\OneDrive\Bureau\mh_project\metaheuristique\data\gr666       	52333.81824258574
+E:\Program Files (x86)\OneDrive\Bureau\mh_project\metaheuristique\data\surprise1350	866099.1936881173
+
+tsp.projects.test.GRASP
 E:\Program Files (x86)\OneDrive\Bureau\mh_project\metaheuristique\data\bier127     
