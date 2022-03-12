@@ -3,17 +3,13 @@ package tsp.projects.test;
 import tsp.evaluation.Coordinates;
 import tsp.evaluation.Evaluation;
 import tsp.evaluation.Path;
-import tsp.evaluation.Solution;
 import tsp.projects.CompetitorProject;
 import tsp.projects.DemoProject;
 import tsp.projects.InvalidProjectException;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Random;
 
-public class oui extends DemoProject {
+public class RecuitSimulé extends DemoProject {
     private Path path;
     private double currentLength;
     private static final Random rand = new Random();
@@ -21,7 +17,7 @@ public class oui extends DemoProject {
     private int nbR = 0;
     private double T;
 
-    public oui(Evaluation evaluation) throws InvalidProjectException {
+    public RecuitSimulé(Evaluation evaluation) throws InvalidProjectException {
         super(evaluation);
         this.addAuthor("Nicolas Demarquez");
         this.addAuthor("Simon Bartolacci");
